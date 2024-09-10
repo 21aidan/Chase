@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Chase Game</title>
+    <style>
+body {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
+    height: 100vh;
+    margin: 0;
+    background-color: #222;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #333;
+    position: relative;
+    width: 100%; /* Allow the container to adjust for all bar widths */
+    align-items: center; /* Center all bars */
+}
+
+.bar {
+    height: 100px;
+    background-color: lightblue;
+    border: 2px solid white;
+    box-sizing: border-box;  /* Ensures padding/border don't affect size */
+    position: relative; /* Needed for positioning the triangle */
+}
+
+.bar:nth-child(1) {
+    width: 520px; /* Widest bar at the top */
+}
+
+.bar:nth-child(2) {
+    width: 500px;
+}
+
+.bar:nth-child(3) {
+    width: 480px;
+}
+
+.bar:nth-child(4) {
+    width: 460px;
+}
+
+.bar:nth-child(5) {
+    width: 440px;
+}
+
+.bar:nth-child(6) {
+    width: 420px;
+}
+
+.bar:nth-child(7) {
+    width: 400px; /* Narrowest bar at the bottom */
+}
+
+.player1-bar {
+    background-color: darkblue;
+}
+
+.player2-bar {
+    background-color: red;
+    position: relative;
+}
+
+.bar.triangle::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 10px; /* Adjust this to control the position relative to the bar */
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 190px solid transparent; /* Triangle's left side, 5px shorter on each side */
+    border-right: 190px solid transparent; /* Triangle's right side, 5px shorter on each side */
+    border-top: 80px solid darkred; /* Triangle pointing downwards */
+}
+
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div id="bar7" class="bar"></div>
+        <div id="bar6" class="bar"></div>
+        <div id="bar5" class="bar"></div>
+        <div id="bar4" class="bar player1-bar"></div> <!-- Player 1 starts here -->
+        <div id="bar3" class="bar player1-bar"></div>
+        <div id="bar2" class="bar player1-bar"></div>
+        <div id="bar1" class="bar player1-bar"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
