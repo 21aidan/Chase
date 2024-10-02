@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Chase Game</title>
     <style>
+
 body {
     display: flex;
     justify-content: center; /* Centers horizontally */
     align-items: center;     /* Centers vertically */
     height: 100vh;
     margin: 0;
-    background-color: #222;
+    background-color: #000;
+    background-image: radial-gradient(circle at center, #0a1f3b 0%, #000 100%);
 }
 
 .game-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #333;
+    background-color: transparent;
     position: relative;
     width: 100%; /* Allow the container to adjust for all bar widths */
     align-items: center; /* Center all bars */
@@ -27,9 +29,32 @@ body {
 .bar {
     height: 100px;
     background-color: lightblue;
-    border: 2px solid white;
+    border: none/*2px solid white*/;
+    margin-bottom: 4px;
     box-sizing: border-box;  /* Ensures padding/border don't affect size */
     position: relative; /* Needed for positioning the triangle */
+    transition: all 1s ease;
+    overflow: hidden;
+}
+
+/* Ovals for all bars */
+.bar::before, .bar::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+
+.bar::before {
+    top: 10px;
+    left: 5px; /* Left oval */
+}
+
+.bar::after {
+    top: 10px;
+    right: 5px; /* Right oval */
 }
 
 .bar:nth-child(1) {
@@ -60,26 +85,71 @@ body {
     width: 400px; /* Narrowest bar at the bottom */
 }
 
+@keyframes synchronized-pulse {
+    0%, 100% { box-shadow: 0 0 5px 0px rgba(255,255,255,0.5); }
+    50% { box-shadow: 0 0 20px 10px rgba(255,255,255,0.5); }
+}
+
+.pulse {
+    animation: synchronized-pulse 2s infinite;
+    animation-timing-function: linear; /* Ensures a smooth and synchronized animation */
+    animation-delay: -1s; /* Adjusts delay so all bars start at the same point */
+}
+
 .player1-bar {
     background-color: darkblue;
 }
 
-.player2-bar {
-    background-color: red;
-    position: relative;
+/* Red arrow bar - dark red background */
+.bar.player2-bar {
+    background-color: darkred; /* Darker red for the current bar */
 }
 
-.bar.triangle::after {
+/* Normal red for all previous red bars */
+.bar.previous {
+    background-color: red; /* Normal red for previous bars */
+}
+
+
+/* Triangle and grey border for red player (but not affecting the ovals) */
+.bar .triangle {
     content: '';
     position: absolute;
     left: 50%;
-    bottom: 10px; /* Adjust this to control the position relative to the bar */
+    bottom: 10px;
     transform: translateX(-50%);
     width: 0;
     height: 0;
-    border-left: 190px solid transparent; /* Triangle's left side, 5px shorter on each side */
-    border-right: 190px solid transparent; /* Triangle's right side, 5px shorter on each side */
-    border-top: 80px solid darkred; /* Triangle pointing downwards */
+    border-left: 260px solid transparent;
+    border-right: 260px solid transparent;
+    border-top: 90px solid grey; /* grey triangle */
+    z-index: 0;
+}
+.bar .triangle::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 245px solid transparent;
+    border-right: 245px solid transparent;
+    border-top: 90px solid red; /* red border */
+}
+
+/* Bottom oval */
+.bottom-oval {
+    content: '';
+    position: absolute;
+    width: 380px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.8);
+    bottom: 5px; /* Slightly outside the bar */
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    z-index: 0; /* Above the bar */
 }
 
     </style>
