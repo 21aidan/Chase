@@ -20,3 +20,4 @@ Future additions:
 - Add extra effects such as colours changing etc
 - Add a game finish screen and potentially a reset button (although refreshing the page works fine)
 - Add an undo button in case the wrong input is accidentally pressed
+- ISSUE: the white bar is only on the bar with the arrow, fix this
