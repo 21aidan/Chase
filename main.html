@@ -152,6 +152,27 @@ body {
     border-radius: 50%;
     z-index: 0; /* Above the bar */
 }
+/* Flashing effect for green (Player 1 wins) */
+@keyframes flash-green {
+    0%, 100% { background-color: darkgreen; }
+    50% { background-color: lightgreen; }
+}
+
+/* Flashing effect for red (Player 2 catches Player 1) */
+@keyframes flash-red {
+    0%, 100% { background-color: darkred; }
+    50% { background-color: lightcoral; }
+}
+
+/* Apply the flashing effect to all bars */
+.flash-green .bar {
+    animation: flash-green 0.5s infinite;
+}
+
+.flash-red .bar {
+    animation: flash-red 0.5s infinite;
+}
+
 
     </style>
 </head>

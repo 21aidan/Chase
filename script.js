@@ -95,6 +95,17 @@ function movePlayer1() {
     }
     if (player1Position == 1) {
         player_wins.play();
+
+        // Remove any existing triangle for Player 2
+        document.querySelectorAll('.triangle').forEach(triangle => triangle.remove());
+
+        // Trigger green flashing effect for the entire board
+        document.querySelector('.game-container').classList.add('flash-green');
+    
+        // Remove the flashing effect after a delay
+        setTimeout(() => {
+            document.querySelector('.game-container').classList.remove('flash-green');
+        }, 15000); // Flash for 3 seconds
     }
     updatePulseEffect();
 }
@@ -148,6 +159,17 @@ function movePlayer2() {
     }
     if (player2Position == player1Position){
         chaser_catches.play();
+
+        // Remove any existing triangle for Player 2
+        document.querySelectorAll('.triangle').forEach(triangle => triangle.remove());
+        
+        // Trigger red flashing effect for the entire board
+        document.querySelector('.game-container').classList.add('flash-red');
+
+        // Remove the flashing effect after a delay
+        setTimeout(() => {
+            document.querySelector('.game-container').classList.remove('flash-red');
+        }, 15000); // Flash for 3 seconds
     }
     updatePulseEffect();
 }
