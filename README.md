@@ -14,9 +14,12 @@ How to play:
 - Press 1 when the blue player gets a question right
 - Press 2 when the red player (chaser) gets a question right
 
+Audio:
+- Various keys are bound to different audio tracks
+- These effects play when the keys are pressed, so the game master will have to press them at the correct times
+
 Future additions:
 - Make it look more like the actual gameshow, currently the design is just for proof of concept
-- Add sounds when certain things happen (i.e when the contestant gets a question right and moves down a space, or a button to play the theme tune before each question)
 - Add extra effects such as colours changing etc
 - Add a game finish screen and potentially a reset button (although refreshing the page works fine)
 - Add an undo button in case the wrong input is accidentally pressed
