@@ -2,13 +2,62 @@
 let player1Position = 4; // Starting at bar 4
 let player2Position = 8; // Player 2 starts off the top, moving downward
 
+let intro = new Audio('chase_intro.mp3');
+let between = new Audio('between_contestants.mp3');
+let player_choice = new Audio('player_choice.mp3');
+let player_correct = new Audio('player_correct.mp3');
+let chaser_correct = new Audio('chaser_correct.mp3');
+let player_moves = new Audio('player_moves.mp3');
+let chaser_moves = new Audio('chaser_moves.mp3');
+let question = new Audio('question.mp3');
+let chaser_catches = new Audio('chaser_catches.mp3');
+let player_wins = new Audio('player_wins.mp3');
+
+
+
+
 document.addEventListener("keydown", function(event) {
     if (event.key === "1") {
         // Player 1 correct answer
         movePlayer1();
+        player_moves.play();
+
     } else if (event.key === "2") {
         // Player 2 correct answer
         movePlayer2();
+        chaser_moves.play();
+    }
+    if (event.key === "i") {
+        // play the intro
+        intro.play();
+    }
+    if (event.key === "o") {
+        // play the intro
+        intro.pause();
+    }
+    if (event.key === "q") {
+        // play the relevant audio
+        player_correct.play();
+    }
+    if (event.key === "w") {
+        // play the relevant audio
+        chaser_correct.play();
+    }
+    if (event.key === "b") {
+        // play the relevant audio
+        between.play();
+    }
+    if (event.key === "g") {
+        // play the relevant audio
+        question.play();
+    }
+    if (event.key === "h") {
+        // play the relevant audio
+        question.pause();
+    }
+    if (event.key === "d") {
+        // play the relevant audio
+        player_choice.play();
     }
 });
 
@@ -32,7 +81,7 @@ function updatePulseEffect() {
 }
 
 function movePlayer1() {
-    if (player1Position > 1) {
+    if (player1Position > 0) {
         const currentBar = document.getElementById(`bar${player1Position}`);
         const nextBar = document.getElementById(`bar${player1Position - 1}`);
         
@@ -43,6 +92,9 @@ function movePlayer1() {
             nextBar.classList.add('player1-bar');
             updatePulseEffect();
         }, 250);
+    }
+    if (player1Position == 1) {
+        player_wins.play();
     }
     updatePulseEffect();
 }
@@ -93,6 +145,9 @@ function movePlayer2() {
         for (let i = 7; i >= player2Position + 1; i--) {
             document.getElementById(`bar${i}`).classList.add('previous');
         }
+    }
+    if (player2Position == player1Position){
+        chaser_catches.play();
     }
     updatePulseEffect();
 }
